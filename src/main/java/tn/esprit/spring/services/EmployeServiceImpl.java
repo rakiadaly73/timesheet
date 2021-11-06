@@ -1,6 +1,7 @@
 package tn.esprit.spring.services;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -48,18 +49,28 @@ public class EmployeServiceImpl implements IEmployeService {
 	}
 
 	@Transactional	
-	public void affecterEmployeADepartement(int employeId, int depId) {
-	
+public void affecterEmployeADepartement(int employeId, int depId) {
+		
 		Departement departement = new Departement();
 		Optional<Departement> d = deptRepoistory.findById(depId);
 		if(d.isPresent()) {
 		departement = d.get();}
-		deptRepoistory.save(departement);
+	
+		deptRepoistory.save(departement);	
 		Employe employe = new Employe();
 		Optional<Employe> e = employeRepository.findById(employeId);
 		if(e.isPresent()) {
 		employe = e.get();}
-		employeRepository.save(employe);}
+		if(departement.getEmployes() == null){
+
+			List<Employe> employes = new ArrayList<>();
+			employes.add(employe);
+			departement.setEmployes(employes);
+		}else{
+
+			departement.getEmployes().add(employe);}
+
+		}
 
 	
 	@Transactional
@@ -70,9 +81,8 @@ public class EmployeServiceImpl implements IEmployeService {
 		Optional<Departement> d = deptRepoistory.findById(depId);
 		if(d.isPresent()) {
 		departement = d.get();}
-		deptRepoistory.save(departement);
-
-		int employeNb = departement.getEmployes().size();
+		
+        int employeNb = departement.getEmployes().size();
 		for(int index = 0; index < employeNb; index++){
 			if(departement.getEmployes().get(index).getId() == employeId){
 				departement.getEmployes().remove(index);
@@ -112,7 +122,7 @@ public class EmployeServiceImpl implements IEmployeService {
 		if(e.isPresent()) {
 		employe = e.get();}
 
-		employeRepository.save(employe);
+	
 
 		return employe.getPrenom();
 	}
@@ -122,7 +132,7 @@ public class EmployeServiceImpl implements IEmployeService {
 		Optional<Employe> e = employeRepository.findById(employeId);
 		if(e.isPresent()) {
 		employe = e.get();}
-		employeRepository.save(employe);
+	
 
 
 		//Desaffecter l'employe de tous les departements

@@ -58,16 +58,23 @@ public class EntrepriseServiceImplTest {
 	@Test
 	public void testDeleteEntrepriseById_METHOD1() {
 		try {
-		Entreprise E = new Entreprise("Samsung","EURL");
-		int Id = es.ajouterEntreprise(E);
-		int lengthBeforeDelete = es.getAllEntreprises().size();
+		Entreprise entreprise = new Entreprise("Samsung","EURL");
+		// ajouter une entreprise :
+		int Id = es.ajouterEntreprise(entreprise);
+		int firstSize = es.getAllEntreprises().size();
+		// supprimer l'entreprise ajoutée :
 		es.deleteEntrepriseById(Id);
-		assertEquals(lengthBeforeDelete-1 , es.getAllEntreprises().size());
+		int secondSize = es.getAllEntreprises().size();
+	      assertNotEquals(firstSize , secondSize);
+
 		l.info("Delete Entreprise (%size) works");
 		} catch (NullPointerException e) {
 			l.error(e.getMessage());
 		}
 	}
+
+
+
 	@Test
 	public void testAffectDepartmentToEntreprise(){
 		try {

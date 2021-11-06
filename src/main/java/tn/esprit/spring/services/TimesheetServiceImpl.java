@@ -87,7 +87,7 @@ public class TimesheetServiceImpl implements ITimesheetService {
 		Optional<Mission> m = missionRepository.findById(missionId);
 		if(m.isPresent()) {
 		mission = m.get();}
-		missionRepository.save( mission);
+
 
 		//verifier s'il est un chef de departement (interet des enum)
 		if(!validateur.getRole().equals(Role.CHEF_DEPARTEMENT)){

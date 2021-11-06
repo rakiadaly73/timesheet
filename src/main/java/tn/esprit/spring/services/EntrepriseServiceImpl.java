@@ -77,7 +77,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 		Optional<Entreprise> t = entrepriseRepoistory.findById(entrepriseId);
 		if(t.isPresent()) {
 		entreprise = t.get();}
-		entrepriseRepoistory.save(entreprise);
+		entrepriseRepoistory.delete(entreprise);
 
 	}
 
@@ -87,7 +87,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 	    Optional<Departement> d = deptRepoistory.findById(depId);
 	    if(d.isPresent()) {
 		departement = d.get();}
-	    deptRepoistory.save(departement);	
+	    deptRepoistory.delete(departement);	
 	}
 
 
@@ -96,8 +96,11 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 		Optional<Entreprise> t = entrepriseRepoistory.findById(entrepriseId);
 		if(t.isPresent()) {
 		entreprise = t.get();}
-		entrepriseRepoistory.save(entreprise);
-		return entreprise ;
+		else {
+
+			return null;}
+		return entreprise;
+	
 
 	}
 	
