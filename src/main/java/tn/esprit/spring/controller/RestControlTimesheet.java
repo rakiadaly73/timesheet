@@ -1,4 +1,4 @@
-package tn.esprit.spring.controller;
+/*package tn.esprit.spring.controller;
 
 import java.util.Date;
 import java.util.List;
@@ -50,7 +50,7 @@ public class RestControlTimesheet {
 	@PostMapping("/ajouterTimesheet/idmission/idemp/dated/datef")
 	@ResponseBody
 	public void ajouterTimesheet(@PathVariable("idmission") int missionId, @PathVariable("idemp") int employeId, @PathVariable("dated") Date dateDebut,@PathVariable("datef") Date dateFin) {
-		itimesheetservice.ajouterTimesheet(missionId, employeId, dateDebut, dateFin);
+		itimesheetservice.addTimesheet(missionId, employeId, dateDebut, dateFin);
 
 	}
 
@@ -77,3 +77,4 @@ public class RestControlTimesheet {
 		return itimesheetservice.getAllEmployeByMission(missionId);
 	}
 }
+*/

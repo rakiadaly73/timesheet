@@ -19,7 +19,7 @@ import tn.esprit.spring.entities.Timesheet;
 import tn.esprit.spring.repository.ContratRepository;
 import tn.esprit.spring.repository.DepartementRepository;
 import tn.esprit.spring.repository.EmployeRepository;
-import tn.esprit.spring.repository.TimesheetRepository;
+import tn.esprit.spring.repository.ITimesheeteRepository;
 
 @Service
 public class EmployeServiceImpl implements IEmployeService {
@@ -31,7 +31,7 @@ public class EmployeServiceImpl implements IEmployeService {
 	@Autowired
 	ContratRepository contratRepoistory;
 	@Autowired
-	TimesheetRepository timesheetRepository;
+	ITimesheeteRepository timesheetRepository;
 
 	public int ajouterEmploye(Employe employe) {
 		employeRepository.save(employe);
@@ -187,7 +187,7 @@ public void affecterEmployeADepartement(int employeId, int depId) {
 	
 	public List<Timesheet> getTimesheetsByMissionAndDate(Employe employe, Mission mission, Date dateDebut,
 			Date dateFin) {
-		return timesheetRepository.getTimesheetsByMissionAndDate(employe, mission, dateDebut, dateFin);
+		return ((EmployeServiceImpl) timesheetRepository).getTimesheetsByMissionAndDate(employe, mission, dateDebut, dateFin);
 	}
 
 	public List<Employe> getAllEmployes() {
