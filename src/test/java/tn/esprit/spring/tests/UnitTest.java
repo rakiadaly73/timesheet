@@ -1,4 +1,4 @@
-package tn.esprit.spring.ContratsTest;
+package tn.esprit.spring.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;

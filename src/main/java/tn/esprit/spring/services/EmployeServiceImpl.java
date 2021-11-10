@@ -93,7 +93,7 @@ public void affecterEmployeADepartement(int employeId, int depId) {
 
 	public int ajouterContrat(Contrat contrat) {
 		contratRepoistory.save(contrat);
-		return contrat.getReference();
+		return contrat.getId();
 	}
 
 	public void affecterContratAEmploye(int contratId, int employeId) {

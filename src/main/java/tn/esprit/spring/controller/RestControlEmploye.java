@@ -72,7 +72,7 @@ public class RestControlEmploye {
 	@ResponseBody
 	public int ajouterContrat(@RequestBody Contrat contrat) {
 		iemployeservice.ajouterContrat(contrat);
-		return contrat.getReference();
+		return contrat.getId();
 	}
 	
 	// http://localhost:8081/SpringMVC/servlet/affecterContratAEmploye/6/1
