@@ -42,15 +42,13 @@ bat "mvn deploy:deploy-file -DgroupId=tn.esprit.spring -DartifactId=Timesheet-sp
 
 stage('Build image with Docker') {
 steps {
-   dir("TimesheetProject"){
 script {
-   dockerImage = docker.build registry}}}}
+   dockerImage = docker.build registry}}}
 stage('Push image with Docker') {
 steps {
-   dir("TimesheetProject"){
 script {
 docker.withRegistry( '', registryCredential ) {
-   dockerImage.push()}}}}}
+   dockerImage.push()}}}}
       
 }
     
